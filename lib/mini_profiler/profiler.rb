@@ -18,6 +18,7 @@ require 'mini_profiler/profiling_methods'
 require 'mini_profiler/context'
 require 'mini_profiler/client_settings'
 require 'mini_profiler/gc_profiler'
+
 # TODO
 # require 'mini_profiler/gc_profiler_ruby_head' if Gem::Version.new('2.1.0') <= Gem::Version.new(RUBY_VERSION)
 
@@ -522,9 +523,8 @@ module Rack
     # * you have disabled auto append behaviour throught :auto_inject => false flag
     # * you do not want script to be automatically appended for the current page. You can also call cancel_auto_inject
     def get_profile_script(env)
-
       settings = {
-       :path => "#{env['SCRIPT_NAME']}#{@config.base_url_path}",
+       :path => "#{@config.base_url_path}",
        :version => MiniProfiler::VERSION,
        :position => @config.position,
        :showTrivial => false,
